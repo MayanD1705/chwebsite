@@ -1,47 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<title>Critical Hit</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
-body {font-family: "Lato", sans-serif}
-.mySlides {display: none}
-.slideshow-gradient {
-  overflow: hidden;
-  width: 100%;
-}
+  <title>Critical Hit</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    body {
+      font-family: "Lato", sans-serif
+    }
 
-.slideshow-gradient-bg {
-  position: absolute;
-  left: 0; top: 0; right: 0; bottom: 0;
-  z-index: 0;
-  border-radius: inherit;
-  /* Example: Black to transparent upwards, adjust as needed */
-  background: linear-gradient(to top, rgba(0,0,0,0.7) 75%, rgba(0,0,0,0.0) 100%);
-}
+    .mySlides {
+      display: none
+    }
 
-.slideshow-gradient > *:not(.slideshow-gradient-bg) {
-  position: relative;
-  z-index: 1;
-}
+    .slideshow-gradient {
+      overflow: hidden;
+      width: 100%;
+    }
 
-</style>
+    .slideshow-gradient-bg {
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 0;
+      border-radius: inherit;
+      /* Example: Black to transparent upwards, adjust as needed */
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 75%, rgba(0, 0, 0, 0.0) 100%);
+    }
+
+    .slideshow-gradient>*:not(.slideshow-gradient-bg) {
+      position: relative;
+      z-index: 1;
+    }
+  </style>
 </head>
+
 <body>
 
-<!-- Navbar -->
-<div class="w3-top">
-  <div class="w3-bar w3-purple w3-card">
-    <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
-    <a href="#" class="w3-bar-item w3-button w3-padding-large">Home</a>
-    <a href="#info" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Info</a>
-    <a href="#events" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Events</a>
-    <a href="#begin" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Smash Beginner's Guide</a>
-    <!--div class="w3-dropdown-hover w3-hide-small">
+  <!-- Navbar -->
+  <div class="w3-top">
+    <div class="w3-bar w3-purple w3-card">
+      <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)"
+        onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+      <a href="#" class="w3-bar-item w3-button w3-padding-large">Home</a>
+      <a href="#info" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Info</a>
+      <a href="#events" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Events</a>
+      <a href="#begin" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Smash Beginner's Guide</a>
+      <!--div class="w3-dropdown-hover w3-hide-small">
       <button class="w3-padding-large w3-button" title="More">MORE <i class="fa fa-caret-down"></i></button>     
       <div class="w3-dropdown-content w3-bar-block w3-card-4">
         <a href="#" class="w3-bar-item w3-button">Merchandise</a>
@@ -50,124 +61,133 @@ body {font-family: "Lato", sans-serif}
       </div>
     </div>
     <a href="javascript:void(0)" class="w3-padding-large w3-hover-red w3-hide-small w3-right"><i class="fa fa-search"></i></a-->
-  </div>
-</div>
-
-<!-- Navbar on small screens (remove the onclick attribute if you want the navbar to always show on top of the content when clicking on the links) -->
-<div id="navDemo" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
-  <a href="#info" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">Info</a>
-  <a href="#events" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">Announcements</a>
-  <a href="#begin" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">Smash Beginner's Guide</a>
-</div>
-
-<!-- Page content -->
-<div class="w3-content" style="max-width:2000px;margin-top:46px">
-
-  <!-- Automatic Slideshow Images -->
-  <div class="mySlides w3-display-container w3-center">
-    <img src="imgs/room.jpg" style="width:100%">
-   <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small slideshow-gradient">
-    <div class="slideshow-gradient-bg"></div>
-    <img src="imgs/criticalHitLogo.png" style="width:35%">
-    <h3><b>Canterbury's Local Smash Bros Tourney & Casual Video Game Meetup</b></h3>
-    <h3><b><i class="fa fa-clock-o w3-hover-opacity"></i> Sundays 12pm to 5pm</b></h3>
-    <h3><b><i class="fa fa-map-marker w3-hover-opacity"></i> Kennedy Seminar Room 2, University of Kent</b></h3>
     </div>
   </div>
-  <div class="mySlides w3-display-container w3-center">
-    <img src="imgs/main.jpg" style="width:100%">
-    <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small slideshow-gradient">
+
+  <!-- Navbar on small screens (remove the onclick attribute if you want the navbar to always show on top of the content when clicking on the links) -->
+  <div id="navDemo" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
+    <a href="#info" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">Info</a>
+    <a href="#events" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">Announcements</a>
+    <a href="#begin" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">Smash Beginner's Guide</a>
+  </div>
+
+  <!-- Page content -->
+  <div class="w3-content" style="max-width:2000px;margin-top:46px">
+
+    <!-- Automatic Slideshow Images -->
+    <div class="mySlides w3-display-container w3-center">
+      <img src="imgs/room.jpg" style="width:100%">
+      <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small slideshow-gradient">
         <div class="slideshow-gradient-bg"></div>
-      <img src="imgs/criticalHitLogo.png" style="width:35%">
-      <h3><b>Canterbury's Local Smash Bros Tourney & Casual Video Game Meetup</b></h3>
-    <h3><b><i class="fa fa-clock-o w3-hover-opacity"></i> Sundays 12pm to 5pm</b></h3>
-      <h3><b><i class="fa fa-map-marker w3-hover-opacity"></i> Kennedy Seminar Room 2, University of Kent</b></h3>
-    </div>
-  </div>
-  <div class="mySlides w3-display-container w3-center">
-    <img src="imgs/eff.jpg" style="width:100%">
-    <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small slideshow-gradient">
-        <div class="slideshow-gradient-bg"></div>
-      <img src="imgs/criticalHitLogo.png" style="width:35%">
-      <h3><b>Canterbury's Local Smash Bros Tourney & Casual Video Game Meetup</b></h3>
-    <h3><b><i class="fa fa-clock-o w3-hover-opacity"></i> Sundays 12pm to 5pm</b></h3>
-      <h3><b><i class="fa fa-map-marker w3-hover-opacity"></i> Kennedy Seminar Room 2, University of Kent</b></h3>
-    </div>
-  </div>
-
-  <!-- The Info Section -->
-  <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="info">
-    <div class="w3-hide-large w3-hide-medium">
         <img src="imgs/criticalHitLogo.png" style="width:35%">
         <h3><b>Canterbury's Local Smash Bros Tourney & Casual Video Game Meetup</b></h3>
         <h3><b><i class="fa fa-clock-o w3-hover-opacity"></i> Sundays 12pm to 5pm</b></h3>
         <h3><b><i class="fa fa-map-marker w3-hover-opacity"></i> Kennedy Seminar Room 2, University of Kent</b></h3>
-    </div>
-    <p class="w3-justify">Critical Hit is Canterbury's most exciting weekly Super Smash Bros Ultimate tournament, bringing together players of all skill levels every Sunday from 12pm to 5pm. Whether you're a seasoned competitor looking to test your skills against the region's finest players, or a newcomer eager to learn the ropes in a welcoming community environment, Critical Hit provides the perfect platform to level up your game. Our tournaments feature both casual friendlies and competitive bracket play, with experienced players always willing to share knowledge and help newcomers improve their neutral game, combo execution, and tournament mentality.</p>
-    <div class="w3-row w3-padding-32">
-      <div class="w3-third">
-        <p>Tournament Organizer</p>
-        <h3>Finn</h3>
-        <img src="imgs/finn.png" class="w3-round w3-margin-bottom" alt="Finn" style="width:60%">
-      </div>
-      <div class="w3-third">
-        <p>Tournament Organizer</p>
-        <h3>Effy</h3>
-        <img src="imgs/effPic.jpg" class="w3-round w3-margin-bottom" alt="Effy" style="width:60%">
-      </div>
-      <div class="w3-third">
-        <p>Marketing Lead</p>
-        <h3>Mat</h3>
-        <img src="imgs/gh.png" class="w3-round" alt="Mat" style="width:60%">
       </div>
     </div>
-  </div>
+    <div class="mySlides w3-display-container w3-center">
+      <img src="imgs/main.jpg" style="width:100%">
+      <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small slideshow-gradient">
+        <div class="slideshow-gradient-bg"></div>
+        <img src="imgs/criticalHitLogo.png" style="width:35%">
+        <h3><b>Canterbury's Local Smash Bros Tourney & Casual Video Game Meetup</b></h3>
+        <h3><b><i class="fa fa-clock-o w3-hover-opacity"></i> Sundays 12pm to 5pm</b></h3>
+        <h3><b><i class="fa fa-map-marker w3-hover-opacity"></i> Kennedy Seminar Room 2, University of Kent</b></h3>
+      </div>
+    </div>
+    <div class="mySlides w3-display-container w3-center">
+      <img src="imgs/eff.jpg" style="width:100%">
+      <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small slideshow-gradient">
+        <div class="slideshow-gradient-bg"></div>
+        <img src="imgs/criticalHitLogo.png" style="width:35%">
+        <h3><b>Canterbury's Local Smash Bros Tourney & Casual Video Game Meetup</b></h3>
+        <h3><b><i class="fa fa-clock-o w3-hover-opacity"></i> Sundays 12pm to 5pm</b></h3>
+        <h3><b><i class="fa fa-map-marker w3-hover-opacity"></i> Kennedy Seminar Room 2, University of Kent</b></h3>
+      </div>
+    </div>
 
-  <!-- The Events Section -->
-  <div class="w3-black" id="events">
-    <div class="w3-container w3-content w3-padding-64" style="max-width:800px">
-      <h2 class="w3-wide w3-center">UPCOMING EVENTS</h2>
-      <p class="w3-opacity w3-center"><i>Join us for these special tournaments!</i></p><br>
-
-      <ul class="w3-ul w3-border w3-white w3-text-grey">
-        <li class="w3-padding">14/09 <span class="w3-tag w3-green w3-margin-left">Upcoming</span></li>
-        <li class="w3-padding">21/09 <span class="w3-tag w3-green w3-margin-left">Upcoming</span></li>
-        <li class="w3-padding">28/09 <span class="w3-tag w3-green w3-margin-left">Upcoming</span></li>
-      </ul>
-
-      <div class="w3-row-padding w3-padding-32" style="margin:0 -16px">
-        <div class="w3-third w3-margin-bottom">
-          <img src="imgs/criticalHitLogo.png" alt="critHitLogo" style="width:100%" class="w3-hover-opacity">
-          <div class="w3-container w3-white">
-            <p><b>Critical Hit #8</b></p>
-            <p class="w3-opacity">Sun 14 Sep 2025</p>
-            <p>Weekly Local</p>
-            <button class="w3-button w3-black w3-margin-bottom" onclick="document.getElementById('ticketModal').style.display='block'">Register Now</button>
-          </div>
+    <!-- The Info Section -->
+    <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="info">
+      <div class="w3-hide-large w3-hide-medium">
+        <img src="imgs/criticalHitLogo.png" style="width:35%">
+        <h3><b>Canterbury's Local Smash Bros Tourney & Casual Video Game Meetup</b></h3>
+        <h3><b><i class="fa fa-clock-o w3-hover-opacity"></i> Sundays 12pm to 5pm</b></h3>
+        <h3><b><i class="fa fa-map-marker w3-hover-opacity"></i> Kennedy Seminar Room 2, University of Kent</b></h3>
+      </div>
+      <p class="w3-justify">Critical Hit is Canterbury's most exciting weekly Super Smash Bros Ultimate tournament,
+        bringing together players of all skill levels every Sunday from 12pm to 5pm. Whether you're a seasoned
+        competitor looking to test your skills against the region's finest players, or a newcomer eager to learn the
+        ropes in a welcoming community environment, Critical Hit provides the perfect platform to level up your game.
+        Our tournaments feature both casual friendlies and competitive bracket play, with experienced players always
+        willing to share knowledge and help newcomers improve their neutral game, combo execution, and tournament
+        mentality.</p>
+      <div class="w3-row w3-padding-32">
+        <div class="w3-third">
+          <p>Tournament Organizer</p>
+          <h3>Finn</h3>
+          <img src="imgs/finn.png" class="w3-round w3-margin-bottom" alt="Finn" style="width:60%">
         </div>
-        <div class="w3-third w3-margin-bottom">
-          <img src="imgs/criticalHitLogo.png" alt="critHitLogo" style="width:100%" class="w3-hover-opacity">
-          <div class="w3-container w3-white">
-            <p><b>Critical Hit #9</b></p>
-            <p class="w3-opacity">Sun 21 Sep 2025</p>
-            <p>Weekly Local</p>
-            <button class="w3-button w3-black w3-margin-bottom" onclick="document.getElementById('ticketModal').style.display='block'">Register Now</button>
-          </div>
+        <div class="w3-third">
+          <p>Tournament Organizer</p>
+          <h3>Effy</h3>
+          <img src="imgs/effPic.jpg" class="w3-round w3-margin-bottom" alt="Effy" style="width:60%">
         </div>
-        <div class="w3-third w3-margin-bottom">
-          <img src="imgs/criticalHitLogo.png" alt="critHitLogo" style="width:100%" class="w3-hover-opacity">
-          <div class="w3-container w3-white">
-            <p><b>Critical Hit #10</b></p>
-            <p class="w3-opacity">Sun 28 Sep 2025</p>
-            <p>Weekly Local</p>
-            <button class="w3-button w3-black w3-margin-bottom" onclick="document.getElementById('ticketModal').style.display='block'">Register Now</button>
-          </div>
+        <div class="w3-third">
+          <p>Marketing Lead</p>
+          <h3>Mat</h3>
+          <img src="imgs/gh.png" class="w3-round" alt="Mat" style="width:60%">
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- Ticket Modal>
+    <!-- The Events Section -->
+    <div class="w3-black" id="events">
+      <div class="w3-container w3-content w3-padding-64" style="max-width:800px">
+        <h2 class="w3-wide w3-center">UPCOMING EVENTS</h2>
+        <p class="w3-opacity w3-center"><i>Join us for these special tournaments!</i></p><br>
+
+        <ul class="w3-ul w3-border w3-white w3-text-grey">
+          <li class="w3-padding">14/09 <span class="w3-tag w3-green w3-margin-left">Upcoming</span></li>
+          <li class="w3-padding">21/09 <span class="w3-tag w3-green w3-margin-left">Upcoming</span></li>
+          <li class="w3-padding">28/09 <span class="w3-tag w3-green w3-margin-left">Upcoming</span></li>
+        </ul>
+
+        <div class="w3-row-padding w3-padding-32" style="margin:0 -16px">
+          <div class="w3-third w3-margin-bottom">
+            <img src="imgs/criticalHitLogo.png" alt="critHitLogo" style="width:100%" class="w3-hover-opacity">
+            <div class="w3-container w3-white">
+              <p><b>Critical Hit #8</b></p>
+              <p class="w3-opacity">Sun 14 Sep 2025</p>
+              <p>Weekly Local</p>
+              <button class="w3-button w3-black w3-margin-bottom"
+                onclick="document.getElementById('ticketModal').style.display='block'">Register Now</button>
+            </div>
+          </div>
+          <div class="w3-third w3-margin-bottom">
+            <img src="imgs/criticalHitLogo.png" alt="critHitLogo" style="width:100%" class="w3-hover-opacity">
+            <div class="w3-container w3-white">
+              <p><b>Critical Hit #9</b></p>
+              <p class="w3-opacity">Sun 21 Sep 2025</p>
+              <p>Weekly Local</p>
+              <button class="w3-button w3-black w3-margin-bottom"
+                onclick="document.getElementById('ticketModal').style.display='block'">Register Now</button>
+            </div>
+          </div>
+          <div class="w3-third w3-margin-bottom">
+            <img src="imgs/criticalHitLogo.png" alt="critHitLogo" style="width:100%" class="w3-hover-opacity">
+            <div class="w3-container w3-white">
+              <p><b>Critical Hit #10</b></p>
+              <p class="w3-opacity">Sun 28 Sep 2025</p>
+              <p>Weekly Local</p>
+              <button class="w3-button w3-black w3-margin-bottom"
+                onclick="document.getElementById('ticketModal').style.display='block'">Register Now</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ticket Modal>
   <div id="begin" class="w3-modal">
     <div class="w3-modal-content w3-animate-top w3-card-4">
       <header class="w3-container w3-teal w3-center w3-padding-32"> 
@@ -187,11 +207,11 @@ body {font-family: "Lato", sans-serif}
     </div>
   </div-->
 
-  <!-- The Social Section -->
-  <div class="w3-container w3-content w3-padding-64" style="max-width:800px" id="contact">
-    <h2 class="w3-wide w3-center">Socials</h2>
-    <p class="w3-opacity w3-center"><i>Check out our content!</i></p>
-    <!--div class="w3-row w3-padding-32">
+    <!-- The Social Section -->
+    <div class="w3-container w3-content w3-padding-64" style="max-width:800px" id="contact">
+      <h2 class="w3-wide w3-center">Socials</h2>
+      <p class="w3-opacity w3-center"><i>Check out our content!</i></p>
+      <!--div class="w3-row w3-padding-32">
       <div class="w3-col m6 w3-large w3-margin-bottom">
         <i class="fa fa-map-marker" style="width:30px"></i> Canterbury, UK<br>
         <i class="fa fa-clock-o" style="width:30px"></i> Sundays: 12pm - 6pm<br>
@@ -212,59 +232,84 @@ body {font-family: "Lato", sans-serif}
         </form>
       </div>
     </div-->
+    </div>
+
+    <!-- End Page Content -->
   </div>
-  
-<!-- End Page Content -->
-</div>
 
-<!-- Image of location/map -->
-<img src="/w3images/map.jpg" class="w3-image w3-greyscale-min" style="width:100%">
+  <!-- Image of location/map -->
+  <img src="/w3images/map.jpg" class="w3-image w3-greyscale-min" style="width:100%">
 
-<!-- Footer -->
-<footer class="w3-container w3-padding-64 w3-center w3-opacity w3-light-grey w3-xlarge">
-  <i class="fa fa-discord w3-hover-opacity"></i>
-  <i class="fa fa-twitch w3-hover-opacity"></i>
-  <i class="fa fa-youtube w3-hover-opacity"></i>
-  <i class="fa fa-instagram w3-hover-opacity"></i>
-  <i class="fa fa-tiktok w3-hover-opacity"></i>
-  <p class="w3-medium">Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
-</footer>
+  <!-- Footer -->
+  <footer class="w3-container w3-padding-64 w3-center w3-opacity w3-light-grey w3-xlarge">
+    <i class="fa fa-discord w3-hover-opacity"></i>
+    <i class="fa fa-twitch w3-hover-opacity"></i>
+    <i class="fa fa-youtube w3-hover-opacity"></i>
+    <i class="fa fa-instagram w3-hover-opacity"></i>
+    <i class="fa fa-tiktok w3-hover-opacity"></i>
+    <p class="w3-medium">Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+  </footer>
 
-<script>
-// Automatic Slideshow - change image every 4 seconds
-var myIndex = 0;
-carousel();
+  <script>
+    // Automatic Slideshow - change image every 4 seconds
+    var myIndex = 0;
+    carousel();
 
-function carousel() {
-  var i;
-  var x = document.getElementsByClassName("mySlides");
-  for (i = 0; i < x.length; i++) {
-    x[i].style.display = "none";  
-  }
-  myIndex++;
-  if (myIndex > x.length) {myIndex = 1}    
-  x[myIndex-1].style.display = "block";  
-  setTimeout(carousel, 4000);    
-}
+    function carousel() {
+      var i;
+      var x = document.getElementsByClassName("mySlides");
+      for (i = 0; i < x.length; i++) {
+        x[i].style.display = "none";
+      }
+      myIndex++;
+      if (myIndex > x.length) { myIndex = 1 }
+      x[myIndex - 1].style.display = "block";
+      setTimeout(carousel, 4000);
+    }
 
-// Used to toggle the menu on small screens when clicking on the menu button
-function myFunction() {
-  var x = document.getElementById("navDemo");
-  if (x.className.indexOf("w3-show") == -1) {
-    x.className += " w3-show";
-  } else { 
-    x.className = x.className.replace(" w3-show", "");
-  }
-}
+    // Used to toggle the menu on small screens when clicking on the menu button
+    function myFunction() {
+      var x = document.getElementById("navDemo");
+      if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+      } else {
+        x.className = x.className.replace(" w3-show", "");
+      }
+    }
 
-// When the user clicks anywhere outside of the modal, close it
-var modal = document.getElementById('ticketModal');
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
-</script>
+    // When the user clicks anywhere outside of the modal, close it
+    var modal = document.getElementById('ticketModal');
+    window.onclick = function (event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+    const startAPIURL = "https://api.start.gg/gql/alpha";
+    const APIKey = "399eba98af3729199599242bbb02f247";
+
+    const testFunction = () => {
+      fetch(startAPIURL, {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+          'Accept': 'application/json',
+          Authorization: 'Bearer ' + APIKey
+        },
+        body: JSON.stringify({
+          query: "query SocalTournaments($perPage: Int, $coordinates: String!, $radius: String!) { tournaments( query: {perPage: $perPage, filter: {upcoming: true, location: {distanceFrom: $coordinates, distance: $radius}}} ) { nodes { id name city startAt slug } } }",
+          variables: {
+            perPage: 4,
+            coordinates: "51.2770, 1.0838",
+            radius: "3mi"
+          },
+        })
+      }).then(r => r.josn())
+        .then(data => {
+          console.log(data.data);
+        })
+    }
+  </script>
 
 </body>
+
 </html>
