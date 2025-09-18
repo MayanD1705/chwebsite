@@ -296,7 +296,7 @@
           Authorization: 'Bearer ' + APIKey
         },
         body: JSON.stringify({
-          query: "query SocalTournaments($perPage: Int, $coordinates: String!, $radius: String!) { tournaments( query: {perPage: $perPage, filter: {upcoming: true, location: {distanceFrom: $coordinates, distance: $radius}}} ) { nodes { id name city startAt slug } } }",
+          query: "query canterburyTournaments($perPage: Int, $coordinates: String!, $radius: String!) { tournaments( query: {perPage: $perPage, filter: {upcoming: true, location: {distanceFrom: $coordinates, distance: $radius}}} ) { nodes { id name city startAt slug } } }",
           variables: {
             perPage: 4,
             coordinates: "51.2770, 1.0838",
