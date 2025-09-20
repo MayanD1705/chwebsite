@@ -146,10 +146,7 @@
         <h2 class="w3-wide w3-center">UPCOMING EVENTS</h2>
         <p class="w3-opacity w3-center"><i>Join us for these special tournaments!</i></p><br>
 
-        <ul class="w3-ul w3-border w3-white w3-text-grey">
-          <li class="w3-padding">14/09 <span class="w3-tag w3-green w3-margin-left">Upcoming</span></li>
-          <li class="w3-padding">21/09 <span class="w3-tag w3-green w3-margin-left">Upcoming</span></li>
-          <li class="w3-padding">28/09 <span class="w3-tag w3-green w3-margin-left">Upcoming</span></li>
+        <ul class="w3-ul w3-border w3-white w3-text-grey" id="upcoming">
         </ul>
 
         <div class="w3-row-padding w3-padding-32" style="margin:0 -16px">
@@ -249,7 +246,7 @@
     <i class="fa fa-tiktok w3-hover-opacity"></i>
     <p class="w3-medium">Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
   </footer>
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
   <script>
     // Automatic Slideshow - change image every 4 seconds
     var myIndex = 0;
@@ -287,6 +284,24 @@
     const startAPIURL = "https://api.start.gg/gql/alpha";
     const APIKey = "399eba98af3729199599242bbb02f247";
 
+    function timestampToDate(timestamp) {
+      let date = new Date(timestamp * 1000)
+      let dateString = date.getDate().toString().padStart(2, '0') + "/" + (date.getMonth() + 1).toString().padStart(2, '0');
+      return dateString;
+    }
+    function sortFunctionDate(date1, date2) {
+      if (date1 === date2) {
+        return 0;
+      }
+      else {
+        if (date1 > date2) {
+          return 1;
+        } else {
+          return -1;
+        }
+      }
+    }
+
     const testFunction = () => {
       fetch(startAPIURL, {
         method: 'POST',
@@ -296,9 +311,10 @@
           Authorization: 'Bearer ' + APIKey
         },
         body: JSON.stringify({
-          query: "query canterburyTournaments($perPage: Int, $coordinates: String!, $radius: String!) { tournaments( query: {perPage: $perPage, filter: {upcoming: true, location: {distanceFrom: $coordinates, distance: $radius}}} ) { nodes { id name city startAt slug } } }",
+          query: "query canterburyTournaments($perPage: Int, $coordinates: String!, $radius: String!) { tournaments( query: {perPage: $perPage, filter: {location: {distanceFrom: $coordinates, distance: $radius}}} ) { nodes { id name city startAt slug } } }",
           variables: {
-            perPage: 4,
+            //change perPage variable to increase the amount of upcoming tournaments shown in the upcoming list
+            perPage: 5,
             coordinates: "51.2770, 1.0838",
             radius: "3mi"
           },
@@ -306,6 +322,19 @@
       }).then(r => r.json())
         .then(data => {
           console.log(data.data);
+          console.log(timestampToDate(data.data.tournaments.nodes[0].startAt))
+          console.log(data.data.tournaments.nodes[0].startAt)
+
+          let tournaments = data.data.tournaments.nodes;
+          tournaments = tournaments.sort(sortFunctionDate);
+          tournaments.forEach(tournament => {
+            let li = $("<li></li>").text(timestampToDate(tournament.startAt));
+            li.addClass("w3-padding");
+            let span = $("<span></span>").text(tournament.name)
+            span.addClass("w3-tag w3-green w3-margin-left");
+            li.append(span);
+            $('#upcoming').append(li);
+          });
         })
     }
     testFunction();
