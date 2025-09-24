@@ -286,10 +286,6 @@
         })
       }).then(r => r.json())
         .then(data => {
-          console.log(data.data);
-          console.log(timestampToDate(data.data.tournaments.nodes[0].startAt))
-          console.log(data.data.tournaments.nodes[0].startAt)
-
           let tournaments = data.data.tournaments.nodes;
           tournaments.forEach(tournament => {
             let li = $("<li></li>").text(timestampToDate(tournament.startAt));
@@ -301,7 +297,6 @@
           });
           for (let i = 0; i < 3; i++) {
             try {
-              console.log(tournaments[i].name)
               //outer div with img, inner div, p with b, p, p, button
               let outerDiv = $("<div></div>")
               outerDiv.addClass("w3-third w3-margin-bottom")
@@ -345,9 +340,7 @@
               outerDiv.append(innerDiv)
               $('#registerEvents').append(outerDiv);
             }
-
           }
-
         })
     }
     testFunction();
