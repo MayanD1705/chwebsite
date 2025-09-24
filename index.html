@@ -148,38 +148,7 @@
 
         <ul class="w3-ul w3-border w3-white w3-text-grey" id="upcoming">
         </ul>
-
-        <div class="w3-row-padding w3-padding-32" style="margin:0 -16px">
-          <div class="w3-third w3-margin-bottom">
-            <img src="imgs/criticalHitLogo.png" alt="critHitLogo" style="width:100%" class="w3-hover-opacity">
-            <div class="w3-container w3-white">
-              <p><b>Critical Hit #8</b></p>
-              <p class="w3-opacity">Sun 14 Sep 2025</p>
-              <p>Weekly Local</p>
-              <button class="w3-button w3-black w3-margin-bottom"
-                onclick="document.getElementById('ticketModal').style.display='block'">Register Now</button>
-            </div>
-          </div>
-          <div class="w3-third w3-margin-bottom">
-            <img src="imgs/criticalHitLogo.png" alt="critHitLogo" style="width:100%" class="w3-hover-opacity">
-            <div class="w3-container w3-white">
-              <p><b>Critical Hit #9</b></p>
-              <p class="w3-opacity">Sun 21 Sep 2025</p>
-              <p>Weekly Local</p>
-              <button class="w3-button w3-black w3-margin-bottom"
-                onclick="document.getElementById('ticketModal').style.display='block'">Register Now</button>
-            </div>
-          </div>
-          <div class="w3-third w3-margin-bottom">
-            <img src="imgs/criticalHitLogo.png" alt="critHitLogo" style="width:100%" class="w3-hover-opacity">
-            <div class="w3-container w3-white">
-              <p><b>Critical Hit #10</b></p>
-              <p class="w3-opacity">Sun 28 Sep 2025</p>
-              <p>Weekly Local</p>
-              <button class="w3-button w3-black w3-margin-bottom"
-                onclick="document.getElementById('ticketModal').style.display='block'">Register Now</button>
-            </div>
-          </div>
+        <div class="w3-row-padding w3-padding-32" style="margin:0 -16px" id="registerEvents">
         </div>
       </div>
     </div>
@@ -289,6 +258,15 @@
       let dateString = date.getDate().toString().padStart(2, '0') + "/" + (date.getMonth() + 1).toString().padStart(2, '0') + "/" + date.getFullYear();
       return dateString;
     }
+
+    function timestampToDayDateMonthYear(timestamp) {
+      let date = new Date(timestamp * 1000)
+      let days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+      let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+      let stringToReturn = days[date.getDay()] + " " + date.getDate().toString().padStart(2, '0') + " " + months[date.getMonth()] + " " + date.getFullYear();
+      return stringToReturn;
+    }
+
     const testFunction = () => {
       fetch(startAPIURL, {
         method: 'POST',
@@ -321,6 +299,55 @@
             li.append(span);
             $('#upcoming').append(li);
           });
+          for (let i = 0; i < 3; i++) {
+            try {
+              console.log(tournaments[i].name)
+              //outer div with img, inner div, p with b, p, p, button
+              let outerDiv = $("<div></div>")
+              outerDiv.addClass("w3-third w3-margin-bottom")
+              //What differes between honeycomb and criticalHit
+              let image = "";
+              let tourneyDesc = "";
+              if (tournaments[i].name.toLowerCase().includes("criticalhit")) {
+                image = '<img src= "imgs/criticalHitLogo.png" alt ="critHitLogo" style="width:100%" class ="w3-hover-opcacity">'
+                tourneyDesc = "Weekly Local"
+              }
+              else if (tournaments[i].name.toLowerCase().includes("honeycomb")) {
+                image = '<img src= "imgs/honeycombLogo.png" alt ="honeycombLogo" style="width:100%" class ="w3-hover-opcacity">'
+                tourneyDesc = "Monthly Local"
+              }
+              outerDiv.append(image)
+              let innerDiv = $("<div></div")
+              innerDiv.addClass("w3-container w3-white")
+              innerDiv.append("<p><b>" + tournaments[i].name + "</b></p>")
+              innerDiv.append('<p class ="w3-opacity">' + timestampToDayDateMonthYear(tournaments[i].startAt) + '</p>')
+              innerDiv.append('<p>' + tourneyDesc + '</p>')
+              let button = $('<button class = "w3-button w3-black w3-margin-bottom""> Register Now </button>')
+              button.click(function () {
+                window.open("https://www.start.gg/" + tournaments[i].slug + "/register");
+              })
+              innerDiv.append(button)
+              outerDiv.append(innerDiv)
+              $('#registerEvents').append(outerDiv);
+            } catch (err) {
+              let outerDiv = $("<div></div>")
+              outerDiv.addClass("w3-third w3-margin-bottom")
+              let image = '<img src= "imgs/comingSoon.png" alt ="ComingSoon" style="width:100%" class ="w3-hover-opcacity">';
+              let tourneyDesc = "To be Announced";
+              outerDiv.append(image)
+              let innerDiv = $("<div></div")
+              innerDiv.addClass("w3-container w3-white")
+              innerDiv.append("<p><b> Coming Soon</b></p>")
+              innerDiv.append('<p class ="w3-opacity"> To be Announced</p>')
+              innerDiv.append('<p>' + tourneyDesc + '</p>')
+              let button = $('<button class = "w3-button w3-black w3-margin-bottom""> Unavailable </button>')
+              innerDiv.append(button)
+              outerDiv.append(innerDiv)
+              $('#registerEvents').append(outerDiv);
+            }
+
+          }
+
         })
     }
     testFunction();
