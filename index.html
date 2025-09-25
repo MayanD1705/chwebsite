@@ -216,7 +216,8 @@
     <p class="w3-medium">Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
   </footer>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-  <script>
+  <script defer>
+    // defer so api content is fetched before display
     // Automatic Slideshow - change image every 4 seconds
     var myIndex = 0;
     carousel();
@@ -253,12 +254,15 @@
     const startAPIURL = "https://api.start.gg/gql/alpha";
     const APIKey = "399eba98af3729199599242bbb02f247";
 
+
+    //Conversts unix timestampt from api to a string in form of dd/mm/yyyy
     function timestampToDate(timestamp) {
       let date = new Date(timestamp * 1000)
       let dateString = date.getDate().toString().padStart(2, '0') + "/" + (date.getMonth() + 1).toString().padStart(2, '0') + "/" + date.getFullYear();
       return dateString;
     }
 
+    //Convers unix timestampt from api to a string in form of DayOfWeek Date Month Year
     function timestampToDayDateMonthYear(timestamp) {
       let date = new Date(timestamp * 1000)
       let days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
@@ -267,7 +271,21 @@
       return stringToReturn;
     }
 
-    const testFunction = () => {
+    //Filters the tournaments from query by key word, include keywords from future events in the array for them to be displayed
+    function filterByNames(tournament) {
+      let wantedTournaments = ["critical", "honeycomb"]
+      let found = false
+      wantedTournaments.forEach(name => {
+        if (tournament.name.toLowerCase().includes(name)) {
+          found = true
+        }
+      })
+      return found
+    }
+
+    //Function that runs the query using the api and handles all usage of the api data on the page, including displaying
+    //the list of upcoming events and the top 3 upcoming events with links to their registration pages
+    const fetchStartGGData = () => {
       fetch(startAPIURL, {
         method: 'POST',
         headers: {
@@ -276,10 +294,13 @@
           Authorization: 'Bearer ' + APIKey
         },
         body: JSON.stringify({
+          //Selects all upcoming tournaments and sorts them from soonest to latest
+          //Will include all tournaments from canterbury, if there are more non us tournaments than the perPage variable, non of our tournaments will be displayed
           query: 'query canterburyTournaments($perPage: Int, $coordinates: String!, $radius: String!) { tournaments( query: {perPage: $perPage sortBy: "startAt asc" ,filter: {upcoming: true , location: {distanceFrom: $coordinates, distance: $radius}}} ) { nodes { id name city startAt slug } } }',
           variables: {
             //change perPage variable to increase the amount of upcoming tournaments shown in the upcoming list
-            perPage: 5,
+            perPage: 20,
+            //Coords of Canterbury
             coordinates: "51.2770, 1.0838",
             radius: "3mi"
           },
@@ -287,6 +308,19 @@
       }).then(r => r.json())
         .then(data => {
           let tournaments = data.data.tournaments.nodes;
+
+          //test tournament to ensure we filter out any other tournaments happening canterbury we don't want to display for now
+          const testTournament = {
+            id: 7428,
+            name: "Test Tournament",
+            city: "Birmingham",
+            startAt: 1759057200,
+            slug: "tournament/test-tournament-1"
+          }
+          tournaments.push(testTournament)
+          //Filters out unwanted tournaments if they are present
+          tournaments = tournaments.filter(filterByNames)
+          //For each loop to display the tournaments in the upcoming list
           tournaments.forEach(tournament => {
             let li = $("<li></li>").text(timestampToDate(tournament.startAt));
             li.addClass("w3-padding");
@@ -295,6 +329,8 @@
             li.append(span);
             $('#upcoming').append(li);
           });
+          //For loop with a try catch statments to display the top 3 soonest tournaments with their registration pages
+          //The catch ensures if there are not 3 upcoming tournaments a "Coming soon" tournament will be shown instead
           for (let i = 0; i < 3; i++) {
             try {
               //outer div with img, inner div, p with b, p, p, button
@@ -303,7 +339,8 @@
               //What differes between honeycomb and criticalHit
               let image = "";
               let tourneyDesc = "";
-              if (tournaments[i].name.toLowerCase().includes("criticalhit")) {
+              //Add more if else statements here if we want to display any more tournaments that arent critical hit or honeycomb (e.g melody)
+              if (tournaments[i].name.toLowerCase().includes("critical")) {
                 image = '<img src= "imgs/criticalHitLogo.png" alt ="critHitLogo" style="width:100%" class ="w3-hover-opcacity">'
                 tourneyDesc = "Weekly Local"
               }
@@ -325,6 +362,7 @@
               outerDiv.append(innerDiv)
               $('#registerEvents').append(outerDiv);
             } catch (err) {
+              //Creates the coming soon box
               let outerDiv = $("<div></div>")
               outerDiv.addClass("w3-third w3-margin-bottom")
               let image = '<img src= "imgs/comingSoon.png" alt ="ComingSoon" style="width:100%" class ="w3-hover-opcacity">';
@@ -343,7 +381,7 @@
           }
         })
     }
-    testFunction();
+    fetchStartGGData()
   </script>
 
 </body>
