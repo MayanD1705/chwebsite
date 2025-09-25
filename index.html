@@ -273,7 +273,7 @@
 
     //Filters the tournaments from query by key word, include keywords from future events in the array for them to be displayed
     function filterByNames(tournament) {
-      let wantedTournaments = ["critical", "honeycomb"]
+      let wantedTournaments = ["critical", "honeycomb", "melody"]
       let found = false
       wantedTournaments.forEach(name => {
         if (tournament.name.toLowerCase().includes(name)) {
@@ -308,7 +308,7 @@
       }).then(r => r.json())
         .then(data => {
           let tournaments = data.data.tournaments.nodes;
-
+          /*
           //test tournament to ensure we filter out any other tournaments happening canterbury we don't want to display for now
           const testTournament = {
             id: 7428,
@@ -318,6 +318,7 @@
             slug: "tournament/test-tournament-1"
           }
           tournaments.push(testTournament)
+          */
           //Filters out unwanted tournaments if they are present
           tournaments = tournaments.filter(filterByNames)
           //For each loop to display the tournaments in the upcoming list
@@ -339,7 +340,7 @@
               //What differes between honeycomb and criticalHit
               let image = "";
               let tourneyDesc = "";
-              //Add more if else statements here if we want to display any more tournaments that arent critical hit or honeycomb (e.g melody)
+              //Add more if else statements here if we want to display any more tournaments that arent ours
               if (tournaments[i].name.toLowerCase().includes("critical")) {
                 image = '<img src= "imgs/criticalHitLogo.png" alt ="critHitLogo" style="width:100%" class ="w3-hover-opcacity">'
                 tourneyDesc = "Weekly Local"
@@ -347,6 +348,11 @@
               else if (tournaments[i].name.toLowerCase().includes("honeycomb")) {
                 image = '<img src= "imgs/honeycombLogo.png" alt ="honeycombLogo" style="width:100%" class ="w3-hover-opcacity">'
                 tourneyDesc = "Monthly Local"
+              }
+              else if (tournaments[i].name.toLowerCase().includes("melody")) {
+                image = '<img src= "imgs/melodyLogo.png" alt ="melodyLogo" style="width:100%" class ="w3-hover-opcacity">'
+                tourneyDesc = "Regional"
+
               }
               outerDiv.append(image)
               let innerDiv = $("<div></div")
