@@ -368,21 +368,8 @@
               outerDiv.append(innerDiv)
               $('#registerEvents').append(outerDiv);
             } catch (err) {
-              //Creates the coming soon box
-              let outerDiv = $("<div></div>")
-              outerDiv.addClass("w3-third w3-margin-bottom")
-              let image = '<img src= "imgs/comingSoon.png" alt ="ComingSoon" style="width:100%" class ="w3-hover-opcacity">';
-              let tourneyDesc = "To be Announced";
-              outerDiv.append(image)
-              let innerDiv = $("<div></div")
-              innerDiv.addClass("w3-container w3-white")
-              innerDiv.append("<p><b> Coming Soon</b></p>")
-              innerDiv.append('<p class ="w3-opacity"> To be Announced</p>')
-              innerDiv.append('<p>' + tourneyDesc + '</p>')
-              let button = $('<button class = "w3-button w3-black w3-margin-bottom""> Unavailable </button>')
-              innerDiv.append(button)
-              outerDiv.append(innerDiv)
-              $('#registerEvents').append(outerDiv);
+              $('#registerEvents').addClass('w3-flex')
+              $('#registerEvents').css("justify-content", "center")
             }
           }
         })
