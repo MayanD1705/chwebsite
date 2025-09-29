@@ -427,7 +427,7 @@
               outerDiv.append(image)
               let innerDiv = $("<div></div")
               innerDiv.addClass("w3-container w3-white")
-              innerDiv.append("<p><b>" + tournaments[i].name + "</b></p>")
+              innerDiv.append(`<p><b><u><a href="https://www.start.gg/${tournaments[i].slug}" target="_blank" style="text-decoration: none; color: inherit;">${tournaments[i].name}</a></u></b></p>`);
               innerDiv.append('<p class ="w3-opacity">' + timestampToDayDateMonthYear(tournaments[i].startAt) + '</p>')
               innerDiv.append('<p>' + tourneyDesc + '</p>')
               let button = $('<button class = "w3-button w3-black w3-margin-bottom""> Register Now </button>')
